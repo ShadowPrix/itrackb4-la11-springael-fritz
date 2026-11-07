@@ -50,6 +50,7 @@
                     <th>Genre</th>
                     <th>Rating</th>
                     <th>Year</th>
+                    <th>Actions</th>
                 </tr>
 
                 @foreach ($movies as $movie)
@@ -59,6 +60,18 @@
                         <td>{{ $movie->genre->name }}</td>
                         <td>{{ $movie['rating'] }}</td>
                         <td>{{ $movie['year'] }}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('movies.edit', $movie) }}" class="btn btn-sm btn-warning">Edit</a>
+
+                                <form action="{{ route('movies.destroy', $movie) }}" method="POST"
+                                      onsubmit="return confirm('Delete this record?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm text-white" style="background-color:#dc3545;">Delete</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </table>

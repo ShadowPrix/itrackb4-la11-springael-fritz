@@ -20,4 +20,4 @@ Route::get('/movies/filter/{genre?}', function ($genre = null) {
     return redirect()->route('movies.index', $genre ? ['genre' => $genre] : []);
 });
 
-Route::resource('movies', MovieController::class)->only(['index', 'show', 'create', 'store']);
+Route::resource('movies', MovieController::class);
